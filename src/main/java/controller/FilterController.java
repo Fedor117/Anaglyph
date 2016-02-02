@@ -25,7 +25,7 @@ public class FilterController {
         return op.filter(img, null);
     }
 
-    public static BufferedImage lightBlur(BufferedImage img) {
+    public static BufferedImage smth(BufferedImage img) {
         BufferedImageOp op = new ConvolveOp(new Kernel(3, 1, FILTER_SMTH));
 
         return op.filter(img, null);
@@ -47,7 +47,7 @@ public class FilterController {
         }
 
         BufferedImage sharpen  = lightSharpen(image);
-        BufferedImage smth     = lightBlur(image);
+        BufferedImage smth     = smth(image);
         BufferedImage embossed = lightEmboss(image);
 
         try {
@@ -58,4 +58,5 @@ public class FilterController {
             e.printStackTrace();
         }
     }
+    
 }
