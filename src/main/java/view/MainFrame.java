@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLocation(dimension.width / 5, dimension.height / 5);
+        setLocation(dimension.width / 15, dimension.height / 5);
         setSize(dimension.width / 5 * 3, dimension.height / 5 * 3);
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
