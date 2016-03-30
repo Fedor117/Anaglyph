@@ -11,6 +11,10 @@ import java.io.IOException;
 
 public class MainFrame extends JFrame {
 
+    private static final String NAME = "Anaglyph Maker";
+    private static final String LEFT_IMAGE_NAME = "left.jpg";
+    private static final String RIGHT_IMAGE_NAME = "right.jpg";
+
     private BufferedImage leftImage;
     private BufferedImage rightImage;
     private BufferedImage anaglyph;
@@ -23,13 +27,14 @@ public class MainFrame extends JFrame {
     private JLabel        anaglyphImageLabel = new JLabel();
 
     public MainFrame() {
-        super("Anaglyph Maker");
+        super(NAME);
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocation(dimension.width / 15, dimension.height / 5);
         setSize(dimension.width / 5 * 3, dimension.height / 5 * 3);
+
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -65,8 +70,8 @@ public class MainFrame extends JFrame {
 
     public void getImages() {
         ClassLoader classLoader = getClass().getClassLoader();
-        File rightImageFile = new File(classLoader.getResource("left.jpg").getFile());
-        File leftImageFile  = new File(classLoader.getResource("right.jpg").getFile());
+        File rightImageFile = new File(classLoader.getResource(LEFT_IMAGE_NAME).getFile());
+        File leftImageFile = new File(classLoader.getResource(RIGHT_IMAGE_NAME).getFile());
 
         try {
             leftImage   = ImageIO.read(leftImageFile);

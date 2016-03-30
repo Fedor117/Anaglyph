@@ -1,24 +1,18 @@
 package controller;
 
-import Jama.Matrix;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
 import java.io.File;
 import java.io.IOException;
 
 public class AnaglyphMaker {
 
+    private static final String OUTPUT_LOCATION = "outputImages//anaglyph.generated.png";
+
     private BufferedImage leftImage;
     private BufferedImage rightImage;
     private BufferedImage outputImage;
-
-    private Matrix        leftMatrix      = new Matrix(new double[][]{{0, 0, 0}, {0, 1, 0}, {0, 0, 1}});
-    private Matrix        rightMatrix     = new Matrix(new double[][]{{1, 0, 0}, {0, 0, 0}, {0, 0, 0}});
-    private Matrix        leftImagePixel  = new Matrix(new double[][]{{0}, {0}, {0}});
-    private Matrix        rightImagePixel = new Matrix(new double[][]{{0}, {0}, {0}});
 
     public AnaglyphMaker(BufferedImage leftImage, BufferedImage rightImage) {
         this.leftImage  = leftImage;
@@ -29,7 +23,7 @@ public class AnaglyphMaker {
         createResult(leftImage, rightImage);
 
         try {
-            ImageIO.write(outputImage, "png", new File("outputImages//anaglyph.generated.png"));
+            ImageIO.write(outputImage, "png", new File(OUTPUT_LOCATION));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,12 +44,10 @@ public class AnaglyphMaker {
                 outputImage.setRGB(i, j, outputImageColor.getRGB());
             }
         }
-
         return outputImage;
     }
 
     public BufferedImage getResult() {
         return this.outputImage;
     }
-
 }
